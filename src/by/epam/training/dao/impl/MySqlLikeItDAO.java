@@ -80,12 +80,12 @@ public class MySqlLikeItDAO implements LikeItDAO {
 			
 			PreparedStatement ps = connection.prepareStatement(RETURN_LAST_TOPICS);
 			ps.setInt(1, count);
-			logger.debug("create getLastTopics request");
+			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()){
 				result.add(new TopicEntity(rs.getString("header"), rs.getString("context")));
 			}
-			logger.debug("getLastTopics request done");
+			
 		} catch (SQLException ex){
 			throw new DAOException(ex);
 		}
