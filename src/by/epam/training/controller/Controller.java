@@ -2,6 +2,7 @@ package by.epam.training.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epam.training.command.Command;
+import by.epam.training.constants.PagePaths;
 
 public class Controller extends HttpServlet {
 	
@@ -28,10 +30,16 @@ public class Controller extends HttpServlet {
 		response.setContentType("text/html");
 		
 		String commandParameter = request.getParameter("command");
-		logger.trace("command: " + commandParameter);		
-		Command command = provider.getCommand(commandParameter);
-		command.execute(request, response);
+		logger.trace("command: " + commandParameter);	
 		
+		Command command = provider.getCommand(commandParameter);
+	 	command.execute(request, response);
+	 	
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher
+				((String)request.getAttribute(PagePaths.PAGE_ATTR));
+		requestDispatcher.forward(request, response);
+		
+		logger.trace(commandParameter+" executed");
 	}
 	
 	@Override

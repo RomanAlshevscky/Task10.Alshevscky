@@ -14,6 +14,10 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  
    <servlet>
     <description></description>
     <display-name>Controller</display-name>
@@ -25,7 +29,7 @@
     <servlet-name>main</servlet-name>
     <jsp-file>/WEB-INF/jsp/main.jsp</jsp-file>
   </servlet>
-   
+
   <servlet-mapping>
     <servlet-name>Controller</servlet-name>
     <url-pattern>/Controller</url-pattern>

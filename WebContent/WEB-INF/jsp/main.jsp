@@ -5,11 +5,11 @@
 <html>
 <head>
 	<title>LikeIt</title>
-	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/main.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-	<nav class="nav-bar nav-bar_fixed_top">
+  	<nav class="nav-bar nav-bar_fixed_top">
 		<div class="interactBar">
 			<h3 class="logo">LikeIt</h3>
 			<c:if test="${sessionScope.user eq null}">
@@ -32,20 +32,21 @@
 				<div class=" buttons">
 					<form class="nav-bar_sign-out-button nav-button"
 						action="Controller" method="post">
-						<input type="hidden" name="command" value="SIGN_OUT"> <input
-							type="submit" value="Sign out">
+						<input type="hidden" name="command" value="SIGN_OUT"> 
+						<input type="submit" value="Sign out">
 					</form>
 				</div>
 			</c:if>
 		</div>
 	</nav>
 	<div class="wrapper">
-			<c:if test="${not (requestScope.topics eq null)}">
-				<c:forEach var="topic" items="${requestScope.topics.values}">
-					<h3><c:out value="${topic.header}" /></h3><br/>
-					<p><c:out value="${topic.text}" /></p><br/>
-				</c:forEach>
-			</c:if>
+		<c:forEach var="topic" items="${topics}">
+		<div>
+			<h3><c:out value="${topic.header}" /></h3>
+			<p><c:out value="${topic.context}" /></p>
+			<br>		
+		</div>
+		</c:forEach>
 	</div>
 </body>
 </html>
