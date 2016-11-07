@@ -33,6 +33,8 @@ public class ShowLastTopics implements Command {
 		try{
 			List<TopicEntity> result = topic.getLastTopics(TOPIC_TO_SHOW_COUNT);
 			request.setAttribute("topics", result);
+			request.getRequestDispatcher("topics").include(request, response);
+			logger.debug("lastTopics attribute set");
 		} catch(ServiceException se){
 			logger.error(se);
 		}

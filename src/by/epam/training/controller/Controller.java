@@ -28,7 +28,7 @@ public class Controller extends HttpServlet {
 		response.setContentType("text/html");
 		
 		String commandParameter = request.getParameter("command");
-		logger.trace("command: "+commandParameter);		
+		logger.trace("command: " + commandParameter);		
 		Command command = provider.getCommand(commandParameter);
 		command.execute(request, response);
 		

@@ -22,7 +22,7 @@ public class MySqlLikeItDAO implements LikeItDAO {
 	private DBPool dbPool;
 	private final String LOGIN_STATEMENT = "SELECT username FROM user WHERE username=? AND password=? ";
 	private final String CREATE_ACCOUNT_STATEMENT = "INSERT INTO user (username, password) VALUES (?, ?);";
-	private final String RETURN_LAST_TOPICS = "SELECT TOP ? header, context FROM topic;";
+	private final String RETURN_LAST_TOPICS = "SELECT header, context FROM topic LIMIT ?;";
 	public MySqlLikeItDAO(){
 		try {
 			dbPool = new DBPool();
@@ -80,12 +80,12 @@ public class MySqlLikeItDAO implements LikeItDAO {
 			
 			PreparedStatement ps = connection.prepareStatement(RETURN_LAST_TOPICS);
 			ps.setInt(1, count);
-			
+			logger.debug("create getLastTopics request");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()){
 				result.add(new TopicEntity(rs.getString("header"), rs.getString("context")));
 			}
-			
+			logger.debug("getLastTopics request done");
 		} catch (SQLException ex){
 			throw new DAOException(ex);
 		}

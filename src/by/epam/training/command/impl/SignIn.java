@@ -44,8 +44,6 @@ public class SignIn implements Command {
 			} else {
 				logger.trace("login failed");
 				request.setAttribute("error", "FAILED: incorrect username or password.");
-				HttpSession session = request.getSession(true);
-				session.setAttribute("username", username);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher(LOGIN_PAGE);
 				requestDispatcher.forward(request, response);
 			}

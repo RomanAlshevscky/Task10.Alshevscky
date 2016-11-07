@@ -15,18 +15,20 @@ import by.epam.training.command.Command;
 
 public class SignOut implements Command {
 
-	private static final Logger logger = LogManager.getLogger(SignIn.class);
+	private static final Logger logger = LogManager.getLogger(SignOut.class);
 	private final String MAIN_PAGE = "index.jsp";
 	private final String USERNAME_ATTR = "user";
-	
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		logger.trace(session.getAttribute(USERNAME_ATTR)+" signed out.");
-		session.setAttribute(USERNAME_ATTR, null);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(MAIN_PAGE);
-		requestDispatcher.forward(request, response);
+
+			HttpSession session = request.getSession(true);
+			
+			logger.trace(session.getAttribute(USERNAME_ATTR) + " signed out.");
+			session.removeAttribute(USERNAME_ATTR);
+
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(MAIN_PAGE);
+			requestDispatcher.forward(request, response);
 
 	}
 
