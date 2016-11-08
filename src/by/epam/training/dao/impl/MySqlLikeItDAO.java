@@ -41,6 +41,7 @@ public class MySqlLikeItDAO implements LikeItDAO {
 			ps.setString(2, userPasswordHash);
 			
 			ResultSet rs = ps.executeQuery();
+			dbPool.putConnection(connection);
 			if (rs.next()){
 				return true;
 			} else {
@@ -61,12 +62,12 @@ public class MySqlLikeItDAO implements LikeItDAO {
 			ps.setString(2, userPasswordHash);
 			
 			int r = ps.executeUpdate();
+			dbPool.putConnection(connection);
 			if (r!= 0){
 				return true;
 			} else {
 				return false;
 			}
-			
 		} catch (SQLException ex){
 			throw new DAOException(ex);
 		}
@@ -75,6 +76,7 @@ public class MySqlLikeItDAO implements LikeItDAO {
 	@Override
 	public List<TopicEntity> getLastTopics(int count) throws DAOException {
 		LinkedList<TopicEntity> result = new LinkedList<>();
+		
 		try{
 			Connection connection = dbPool.getConnection();
 			
@@ -86,6 +88,7 @@ public class MySqlLikeItDAO implements LikeItDAO {
 				result.add(new TopicEntity(rs.getString("header"), rs.getString("context")));
 			}
 			
+			dbPool.putConnection(connection);
 		} catch (SQLException ex){
 			throw new DAOException(ex);
 		}
