@@ -33,7 +33,8 @@ public class SignIn implements Command {
 		String username = request.getParameter(usernameParameter);
 		String userPassHash = request.getParameter(userPassParameter); //add hash func
 		
-		logger.debug("username: "+username+" pass: "+ userPassHash);
+		logger.debug("username: "+username+" pass: "+ userPassHash);// как мы должны вызывать такой debug?
+		// вспоминай лекцию
 		
 		try {
 			if(loginService.doLogin(username, userPassHash)){
@@ -49,6 +50,8 @@ public class SignIn implements Command {
 		} catch (ServiceException se){
 			logger.error(se);
 		}
+		// а как же ты потом на страницу jsp переходишь
+		// ни forward ни sendredirect?
 		
 	}
 
