@@ -50,8 +50,6 @@ public class SignIn implements Command {
 		} catch (ServiceException se){
 			logger.error(se);
 		}
-		// а как же ты потом на страницу jsp переходишь
-		// ни forward ни sendredirect?
 		
 	}
 
