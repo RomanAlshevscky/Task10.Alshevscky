@@ -41,7 +41,9 @@ public class MySqlLikeItDAO implements LikeItDAO {
 			ps.setString(2, userPasswordHash);
 			
 			ResultSet rs = ps.executeQuery();
-			dbPool.putConnection(connection);
+			dbPool.putConnection(connection);// вот как только надо код не по шаблону написать - начинаются чудеса
+			// возвращаешь коннекшн в пул, а потом спокойно работаешь с его resultset-ом
+			// ps и rs не закрываешь
 			if (rs.next()){
 				return true;
 			} else {

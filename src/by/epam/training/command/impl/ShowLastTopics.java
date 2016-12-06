@@ -30,7 +30,7 @@ public class ShowLastTopics implements Command {
 		
 		try{
 			List<TopicEntity> result = topic.getLastTopics(TOPIC_TO_SHOW_COUNT);
-			request.setAttribute("topics", result);
+			request.setAttribute("topics", result);// именуем константные строки
 			request.setAttribute(PagePaths.PAGE_ATTR, PagePaths.MAIN_PAGE);
 		} catch(ServiceException se){
 			logger.error(se);

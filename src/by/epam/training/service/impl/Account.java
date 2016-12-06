@@ -45,7 +45,7 @@ public class Account implements AccountService {
 			throw new ServiceException();
 		}
 		
-		if(username == ""){
+		if(username == ""){//это что же ты так проверяешь, забыв про то, что такое строка в Java?
 			return false;
 		}
 		return true;

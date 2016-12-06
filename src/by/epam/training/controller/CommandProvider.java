@@ -14,8 +14,8 @@ import by.epam.training.command.impl.ShowLastTopics;
 public class CommandProvider {
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
-	CommandProvider() {
-		commands.put("SIGNIN", new SignIn());
+	CommandProvider() {// опять public класс и единственный friedly конструктор
+		commands.put("SIGNIN", new SignIn());// и опять неименованные константные строки
 		commands.put("REDIRECT_TO_REGISTRATION", new RedirectToRegistration());
 		commands.put("REDIRECT_TO_SIGNIN", new RedirectToSignIn());
 		commands.put("CREATE_ACCOUNT", new CreateAccount());

@@ -27,6 +27,7 @@ public class SignOut implements Command {
 			session.removeAttribute(USERNAME_ATTR);
 
 			request.setAttribute(PagePaths.PAGE_ATTR, PagePaths.MAIN_PAGE);
+		// а сессию почему не уничтожаешь?
 
 	}
 
