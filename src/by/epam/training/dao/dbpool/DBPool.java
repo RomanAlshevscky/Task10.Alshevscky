@@ -16,7 +16,8 @@ public class DBPool {
 	private static final int initConnections;
 
 	static {
-		dataSource = new BasicDataSource();
+		dataSource = new BasicDataSource();// пул соединений пишем своими руками
+		// и слушаем задания до конца
 		driverClassName = "com.mysql.jdbc.Driver";
 		url = "jdbc:mysql://localhost:3306/LikeItTEST";
 		user = "root";
